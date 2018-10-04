@@ -21,7 +21,6 @@ services:
         NODE_NUMBER: 1
         PORT_NUMBER: 20333
         RPC_PORT_NUMBER: 30333
-    #image: neo-privatenet1:latest
     ports:
       - "20333:20333"
       - "30333:30333"
@@ -34,11 +33,10 @@ services:
         NODE_NUMBER: 2
         PORT_NUMBER: 20334
         RPC_PORT_NUMBER: 30334
-    #image: neo-privatenet2:latest
     ports:
       - "20334:20334"
       - "30334:30334"
-
+  
   neo-privatenet3:
     container_name: neo-privatenet3
     build:
@@ -47,11 +45,10 @@ services:
         NODE_NUMBER: 3
         PORT_NUMBER: 20335
         RPC_PORT_NUMBER: 30335
-    #image: neo-privatenet3:latest
     ports:
       - "20335:20335"
       - "30335:30335"
-
+  
   neo-privatenet4:
     container_name: neo-privatenet4
     build:
@@ -60,7 +57,6 @@ services:
         NODE_NUMBER: 4
         PORT_NUMBER: 20336
         RPC_PORT_NUMBER: 30336
-    #image: neo-privatenet4:latest
     ports:
       - "20336:20336"
       - "30336:30336"
