@@ -5,7 +5,9 @@ LABEL maintainer="City of Zion"
 LABEL authors="original authors metachris, ashant, hal0x2328, phetter"
 
 ENV DEBIAN_FRONTEND noninteractive
-ARG nodenumber
+ARG NODE_NUMBER
+ARG PORT_NUMBER
+ARG RPC_PORT_NUMBER
 
 # Disable dotnet usage information collection
 # https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry#behavior
@@ -46,29 +48,14 @@ ADD ./neo-cli.zip /opt/neo-cli.zip
 
 # Extract and prepare four consensus nodes
 RUN unzip -q -d /opt/node /opt/neo-cli.zip
-#RUN unzip -q -d /opt/node2 /opt/neo-cli.zip
-#RUN unzip -q -d /opt/node3 /opt/neo-cli.zip
-#RUN unzip -q -d /opt/node4 /opt/neo-cli.zip
 
 # Remove zip neo-cli package
 RUN rm /opt/neo-cli.zip
 
 # Add config files
-ADD ./configs/config$nodenumber.json /opt/node/neo-cli/config.json
+ADD ./configs/config$NODE_NUMBER.json /opt/node/neo-cli/config.json
 ADD ./configs/protocol.json /opt/node/neo-cli/protocol.json
-ADD ./wallets/wallet$nodenumber.json /opt/node/neo-cli/
-
-#ADD ./configs/config2.json /opt/node2/neo-cli/config.json
-#ADD ./configs/protocol.json /opt/node2/neo-cli/protocol.json
-#ADD ./wallets/wallet2.json /opt/node2/neo-cli/
-
-#ADD ./configs/config3.json /opt/node3/neo-cli/config.json
-#ADD ./configs/protocol.json /opt/node3/neo-cli/protocol.json
-#ADD ./wallets/wallet3.json /opt/node3/neo-cli/
-
-#ADD ./configs/config4.json /opt/node4/neo-cli/config.json
-#ADD ./configs/protocol.json /opt/node4/neo-cli/protocol.json
-#ADD ./wallets/wallet4.json /opt/node4/neo-cli/
+ADD ./wallets/wallet$NODE_NUMBER.json /opt/node/neo-cli/
 
 # Add scripts
 RUN wget https://s3.amazonaws.com/neo-experiments/neo-privnet.wallet
@@ -86,15 +73,8 @@ RUN echo "printf \"\n* You can use the alias 'neopy' in the shell to start neo-p
 RUN echo "printf \"\n* Please report issues to https://github.com/CityOfZion/neo-privatenet-docker\n\n\"" >> /root/.bashrc
 
 # Inform Docker what ports to expose
-EXPOSE 20333
-#EXPOSE 20334
-#EXPOSE 20335
-#EXPOSE 20336
-
-#EXPOSE 30333
-#EXPOSE 30334
-#EXPOSE 30335
-#EXPOSE 30336
+EXPOSE $PORT_NUMBER
+EXPOSE $RPC_PORT_NUMBER
 
 # On docker run, start the consensus nodes
 CMD ["/bin/bash", "/opt/run.sh"]

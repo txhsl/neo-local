@@ -13,17 +13,65 @@ services:
     ports:
       - "4002:4002"
 
-  neo-node1:
-    container_name: neo-node1
-    image: cityofzion/neo-privatenet:2.7.6
+  neo-privatenet1:
+    container_name: neo-privatenet1
+    build:
+      context: ./privnet
+      args:
+        NODE_NUMBER: 1
+        PORT_NUMBER: 20333
+        RPC_PORT_NUMBER: 30333
+    #image: neo-privatenet1:latest
     ports:
       - "20333:20333"
       - "30333:30333"
 
+  neo-privatenet2:
+    container_name: neo-privatenet2
+    build:
+      context: ./privnet
+      args:
+        NODE_NUMBER: 2
+        PORT_NUMBER: 20334
+        RPC_PORT_NUMBER: 30334
+    #image: neo-privatenet2:latest
+    ports:
+      - "20334:20334"
+      - "30334:30334"
+
+  neo-privatenet3:
+    container_name: neo-privatenet3
+    build:
+      context: ./privnet
+      args:
+        NODE_NUMBER: 3
+        PORT_NUMBER: 20335
+        RPC_PORT_NUMBER: 30335
+    #image: neo-privatenet3:latest
+    ports:
+      - "20335:20335"
+      - "30335:30335"
+
+  neo-privatenet4:
+    container_name: neo-privatenet4
+    build:
+      context: ./privnet
+      args:
+        NODE_NUMBER: 4
+        PORT_NUMBER: 20336
+        RPC_PORT_NUMBER: 30336
+    #image: neo-privatenet4:latest
+    ports:
+      - "20336:20336"
+      - "30336:30336"
+
   neo-python:
     container_name: neo-python
     depends_on:
-      - neo-node1
+      - neo-privatenet1
+      - neo-privatenet2
+      - neo-privatenet3
+      - neo-privatenet4
       - neo-scan
     image: cityofzion/neo-python:v0.7.7
     network_mode: host
@@ -36,7 +84,10 @@ services:
     container_name: neo-scan
     depends_on:
       - postgres
-      - neo-node1
+      - neo-privatenet1
+      - neo-privatenet2
+      - neo-privatenet3
+      - neo-privatenet4
       - notifications-server
     environment:
       HOST: "${HOST_NAME}"
@@ -48,10 +99,10 @@ services:
       PORT: 4000
     image: registry.gitlab.com/cityofzion/neo-scan
     links:
-      - "neo-node1:30333"
-      - "neo-node2:30334"
-      - "neo-node3:30335"
-      - "neo-node4:30336"
+      - "neo-privatenet1:30333"
+      - "neo-privatenet2:30334"
+      - "neo-privatenet3:30335"
+      - "neo-privatenet4:30336"
     ports:
       - "4000:4000"
 
@@ -59,7 +110,10 @@ services:
     command: "/usr/bin/python3 /neo-python/neo/bin/api_server.py --config /neo-python/custom-config.json --port-rest 8080"
     container_name: notifications-server
     depends_on:
-      - neo-node1
+      - neo-privatenet1
+      - neo-privatenet2
+      - neo-privatenet3
+      - neo-privatenet4
     image: cityofzion/neo-python
     ports:
       - "8080:8080"
