@@ -92,10 +92,10 @@ services:
     environment:
       HOST: "${HOST_NAME}"
       NEO_NOTIFICATIONS_SERVER: "http://${NOTIFICATIONS_SERVER}:8080/v1"
-      NEO_SEED_1: "http://${SEED_SERVER}:30333"
-      NEO_SEED_2: "http://${SEED_SERVER}:30334"
-      NEO_SEED_3: "http://${SEED_SERVER}:30335"
-      NEO_SEED_4: "http://${SEED_SERVER}:30336"
+      NEO_SEED_1: "http://neo-privatenet1:30333"
+      NEO_SEED_2: "http://neo-privatenet2:30334"
+      NEO_SEED_3: "http://neo-privatenet3:30335"
+      NEO_SEED_4: "http://neo-privatenet4:30336"
       PORT: 4000
     image: registry.gitlab.com/cityofzion/neo-scan
     links:
