@@ -8,6 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ARG NODE_NUMBER
 ARG PORT_NUMBER
 ARG RPC_PORT_NUMBER
+ENV NODENBR=$NODE_NUMBER
 
 # Disable dotnet usage information collection
 # https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry#behavior
