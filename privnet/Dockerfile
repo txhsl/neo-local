@@ -39,10 +39,10 @@ RUN apt-get update && apt-get install -y \
 RUN rm -rf /var/lib/apt/lists/*
 
 # neo-python setup: clonse and install dependencies
-RUN git clone https://github.com/CityOfZion/neo-python.git /neo-python
-WORKDIR /neo-python
+###RUN git clone https://github.com/CityOfZion/neo-python.git /neo-python
+##WORKDIR /neo-python
 # RUN git checkout development
-RUN pip3 install -e .
+##RUN pip3 install -e .
 
 # Add the neo-cli package
 ADD ./neo-cli.zip /opt/neo-cli.zip
@@ -66,12 +66,9 @@ ADD ./scripts/claim_neo_and_gas_fixedwallet.py /neo-python/
 ADD ./scripts/claim_gas_fixedwallet.py /neo-python/
 ADD ./wallets/neo-privnet.python-wallet /tmp/wallet
 
-# Some .bashrc helpers: 'neopy', and a welcome message for bash users
-RUN echo "alias neopy=\"cd /neo-python && np-prompt -p\"" >> /root/.bashrc
+# A welcome message for bash users
 RUN echo "printf \"\n* Consensus nodes are running in screen sessions, check 'screen -ls'\"" >> /root/.bashrc
-RUN echo "printf \"\n* neo-python is installed in /neo-python, with a neo-privnet.wallet file in place\"" >> /root/.bashrc
-RUN echo "printf \"\n* You can use the alias 'neopy' in the shell to start neo-python's prompt.py with privnet settings\"" >> /root/.bashrc
-RUN echo "printf \"\n* Please report issues to https://github.com/CityOfZion/neo-privatenet-docker\n\n\"" >> /root/.bashrc
+RUN echo "printf \"\n* Please report issues to https://github.com/CityOfZion/neo-local\n\n\"" >> /root/.bashrc
 
 # Inform Docker what ports to expose
 EXPOSE $PORT_NUMBER
