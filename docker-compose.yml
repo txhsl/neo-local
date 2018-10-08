@@ -48,7 +48,7 @@ services:
     environment:
       HOST: "${HOST_NAME}"
       NEO_NOTIFICATIONS_SERVER: "http://${NOTIFICATIONS_SERVER}:8080/v1"
-      NEO_SEEDS: "http://${SEED_SERVER}:30333;http://${SEED_SERVER}:30334;http://${SEED_SERVER}:30335;http://${SEED_SERVER}:30336"
+      NEO_SEEDS: "http://${SEED_SERVER}:10003;http://${SEED_SERVER}:20003;http://${SEED_SERVER}:30003;http://${SEED_SERVER}:40003"
       PORT: 4000
       DB_HOSTNAME: postgres
       DB_USERNAME: postgres
@@ -57,10 +57,10 @@ services:
       REPLACE_OS_VARS: "true"
     image: registry.gitlab.com/cityofzion/neo-scan/api:latest
     links:
-    - "neo-nodes:30333"
-    - "neo-nodes:30334"
-    - "neo-nodes:30335"
-    - "neo-nodes:30336"
+    - "neo-nodes:10003"
+    - "neo-nodes:20003"
+    - "neo-nodes:30003"
+    - "neo-nodes:40003"
     ports:
     - "4000:4000"
 
@@ -72,7 +72,7 @@ services:
       - notifications-server
     environment:
       NEO_NOTIFICATIONS_SERVER: "http://${NOTIFICATIONS_SERVER}:8080/v1"
-      NEO_SEEDS: "http://${SEED_SERVER}:30333;http://${SEED_SERVER}:30334;http://${SEED_SERVER}:30335;http://${SEED_SERVER}:30336"
+      NEO_SEEDS: "http://${SEED_SERVER}:10003;http://${SEED_SERVER}:20003;http://${SEED_SERVER}:30003;http://${SEED_SERVER}:40003"
       DB_HOSTNAME: postgres
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
@@ -80,10 +80,10 @@ services:
       REPLACE_OS_VARS: "true"
     image: registry.gitlab.com/cityofzion/neo-scan/sync:latest
     links:
-      - "neo-nodes:30333"
-      - "neo-nodes:30334"
-      - "neo-nodes:30335"
-      - "neo-nodes:30336"
+      - "neo-nodes:10003"
+      - "neo-nodes:20003"
+      - "neo-nodes:30003"
+      - "neo-nodes:40003"
 
   notifications-server:
     command: "/usr/bin/python3 /neo-python/neo/bin/api_server.py --config /neo-python/custom-config.json --port-rest 8080"
