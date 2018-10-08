@@ -15,16 +15,16 @@ services:
 
   neo-nodes:
     container_name: neo-nodes
-    image: cityofzion/neo-privatenet:2.7.6
+    image: txhsl/neo-cli-docker-fulldata:ex90k
     ports:
-      - "20333:20333"
-      - "20334:20334"
-      - "20335:20335"
-      - "20336:20336"
-      - "30333:30333"
-      - "30334:30334"
-      - "30335:30335"
-      - "30336:30336"
+      - "20333:10001"
+      - "20334:20001"
+      - "20335:30001"
+      - "20336:40001"
+      - "30333:10003"
+      - "30334:20003"
+      - "30335:30003"
+      - "30336:40003"
 
   neo-python:
     container_name: neo-python

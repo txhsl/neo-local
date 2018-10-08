@@ -1,27 +1,27 @@
 {
 	"ProtocolConfiguration": {
-		"Magic": 56753,
+		"Magic": 123456,
 		"AddressVersion": 23,
 		"StandbyValidators": [
-			"02b3622bf4017bdfe317c58aed5f4c753f206b7db896046fa7d774bbc4bf7f8dc2",
-			"02103a7f7dd016558597f7960d27c516a4394fd968b9e65155eb4b013e4040406e",
-			"03d90c07df63e690ce77912e10ab51acc944b66860237b608c4f8f8309e71ee699",
-			"02a7bc55fe8684e0119768d104ba30795bdcc86619e864add26156723ed185cd62"
+			"037ebe29fff57d8c177870e9d9eecb046b27fc290ccbac88a0e3da8bac5daa630d",
+      			"03b34a4be80db4a38f62bb41d63f9b1cb664e5e0416c1ac39db605a8e30ef270cc",
+      			"03cc384ca982168bf6f08922d27c8acc4357d52a7e8ad8281d4af6683e6f63e94d",
+      			"03da4ed85a991134bf45592a5b04d6d71399f23a85843f43e6ac1a5d30f5473711"
 		],
 		"SeedList": [
-			"neo-nodes:20333",
-			"neo-nodes:20334",
-			"neo-nodes:20335",
-			"neo-nodes:20336"
+			"neo-nodes:10001",
+			"neo-nodes:20001",
+			"neo-nodes:30001",
+			"neo-nodes:40001"
 		],
 		"RPCList": [
-			"http://neo-nodes:30333"
+			"http://neo-nodes:10003"
 		],
 		"SystemFee": {
-			"EnrollmentTransaction": 1000,
-			"IssueTransaction": 500,
-			"PublishTransaction": 500,
-			"RegisterTransaction": 10000
+			"EnrollmentTransaction": 10,
+			"IssueTransaction": 5,
+			"PublishTransaction": 5,
+			"RegisterTransaction": 100
 		}
 	},
 	"ApplicationConfiguration": {
