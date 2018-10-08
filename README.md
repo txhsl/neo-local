@@ -47,3 +47,11 @@ Please visit the [wiki](https://github.com/CityOfZion/neo-local/wiki) for
 instructions on how to install and use the project.
 
 ![image](https://user-images.githubusercontent.com/2796074/36632958-9247f8ba-198d-11e8-8055-f096141902d9.png)
+
+## Modification Warning
+
+The neo-python client was removed from the compose file, and the original privnet was replaced with the [txhsl/neo-cli-docker-fulldata:ex90k](https://hub.docker.com/r/txhsl/neo-cli-docker-fulldata/). All the ports of dockers remain.
+
+## Sreenshot
+
+![image](./screenshot/screenshot.png)
