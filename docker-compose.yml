@@ -26,19 +26,6 @@ services:
       - "30335:30003"
       - "30336:40003"
 
-  neo-python:
-    container_name: neo-python
-    depends_on:
-      - neo-nodes
-      - neo-scan-api
-      - neo-scan-sync
-    image: cityofzion/neo-python:v0.8.0
-    network_mode: host
-    tty: true
-    volumes:
-      - "./smart-contracts:/smart-contracts"
-      - "./wallets:/wallets"
-
   neo-scan-api:
     container_name: neo-scan-api
     depends_on:
